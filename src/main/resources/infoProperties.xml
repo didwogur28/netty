@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TcpIP>
+	<runMode id="Test">
+		<sendIp>127.0.0.1</sendIp>
+		<sendPort>8080</sendPort>
+		<recvPort>8080</recvPort>
+		<webIp>http://localhost:8070</webIp>
+		<recvWebUrl>/letter/recvLetter</recvWebUrl>
+		<sendWebUrl>/letter/sendLetter</sendWebUrl>
+	</runMode>
+</TcpIP>
