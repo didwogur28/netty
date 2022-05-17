@@ -45,7 +45,7 @@ public class EchoClient {
             try {
 
                 // sendData를 보내면 웹에서 응답으로 데이터가 있으면 데이터를 없으면 NoData를 보냄
-                sendData = echoUtil.refineWebConnect1(webIp, sendWebUrl, "sendData".getBytes());
+                sendData = echoUtil.refineWebConnect(webIp, sendWebUrl, "sendData".getBytes());
 
             } catch(Exception e){
 

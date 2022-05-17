@@ -9,7 +9,12 @@ import org.jdom2.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +60,39 @@ public class EchoUtil {
         }
     }
 
-    public String refineWebConnect1( String urlPath1, String urlPath2, byte[] request) throws Exception{
-        return "";
+    public String refineWebConnect(String urlPath1, String urlPath2, byte[] request) throws Exception{
+
+        String rData = "";
+        String totData= "";
+
+        URL url = new URL(urlPath1.trim()+ urlPath2.trim());
+
+        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+
+        con.setDoOutput(true);
+        con.setDoInput(true);
+        con.setRequestMethod("POST");
+        con.setConnectTimeout(15000);
+        con.setReadTimeout(15000);
+
+        OutputStream os = con.getOutputStream();
+
+        //데이터 웹에 송신
+        os.write(request);
+
+        os.flush();
+        os.close();
+
+        BufferedReader br = new BufferedReader( new InputStreamReader( con.getInputStream() ));
+
+        // 표준출력으로 한 라인씩 출력
+        while( ( rData = br.readLine() ) != null ) {
+            totData += rData;
+        }
+
+        br.close();
+        con.disconnect();
+
+        return totData;
     }
 }
