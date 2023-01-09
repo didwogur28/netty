@@ -96,7 +96,7 @@ public class EchoClientHandler extends ChannelInboundHandlerAdapter {
 
             }
 
-            logger.debug("===========리파인웹 연결 끝===========");
+            logger.debug("===========웹 연결 끝===========");
 
             sendData = null;
             isFirst = true;
